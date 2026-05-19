@@ -104,11 +104,10 @@
     <!-- ============ TOP BAR ============ -->
     <header class="topbar">
       <div class="topbar-left">
-        <button class="icon-btn" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
-        <div class="location">
+        <button class="location" id="locationBtn" type="button">
           <span class="loc-label"><i class="fa-solid fa-location-dot"></i> Yetkazib berish</span>
-          <span class="loc-value">Toshkent, Chilonzor</span>
-        </div>
+          <span class="loc-value" id="locValue">Manzil tanlang</span>
+        </button>
       </div>
       <div class="topbar-right">
         <button class="icon-btn notif-btn" id="notifBtn">
@@ -141,20 +140,6 @@
         <div class="search-bar">
           <i class="fa-solid fa-magnifying-glass"></i>
           <input type="text" placeholder="Burger, pizza, lavash qidirish..." id="searchInput" autocomplete="off" />
-          <button class="filter-btn" aria-label="Filter"><i class="fa-solid fa-sliders"></i></button>
-        </div>
-      </div>
-
-      <!-- Promo banner -->
-      <div class="promo-slider">
-        <div class="promo-card">
-          <div class="promo-text">
-            <span class="promo-tag">🔥 YANGI AKSIYA</span>
-            <h2>Burger + Free<br/>Coca-Cola</h2>
-            <p>Faqat bugun -30% chegirma bilan!</p>
-            <button class="btn-primary sm">Buyurtma berish</button>
-          </div>
-          <div class="promo-img">🍔</div>
         </div>
       </div>
 
@@ -218,12 +203,6 @@
         <h2 id="profileName">User</h2>
         <p id="profileEmail">user@mail.com</p>
         <button class="btn-outline sm" id="editProfileBtn">Profilni tahrirlash</button>
-      </div>
-
-      <div class="profile-stats">
-        <div class="stat"><b id="statOrders">0</b><span>Buyurtma</span></div>
-        <div class="stat"><b id="statFav">0</b><span>Sevimli</span></div>
-        <div class="stat"><b id="statBonus">0</b><span>Bonus</span></div>
       </div>
 
       <div class="menu-list">
