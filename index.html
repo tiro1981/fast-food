@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tasty Bite - Fast Food</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ========== AUTH MODAL (Login / Register) ========== -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <i class="fa-solid fa-burger"></i>
+        <span>Tasty<b>Bite</b></span>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Kirish</button>
+        <button class="auth-tab" data-tab="register">Ro'yxatdan o'tish</button>
+      </div>
+
+      <!-- LOGIN -->
+      <form class="auth-form active" id="loginForm">
+        <div class="input-group">
+          <i class="fa-solid fa-envelope"></i>
+          <input type="email" placeholder="Email manzilingiz" required />
+        </div>
+        <div class="input-group">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" placeholder="Parol" required />
+        </div>
+        <a href="#" class="forgot">Parolni unutdingizmi?</a>
+        <button type="submit" class="btn-primary">Kirish</button>
+        <div class="auth-divider"><span>yoki</span></div>
+        <div class="social-row">
+          <button type="button" class="social-btn"><i class="fa-brands fa-google"></i></button>
+          <button type="button" class="social-btn"><i class="fa-brands fa-facebook-f"></i></button>
+          <button type="button" class="social-btn"><i class="fa-brands fa-apple"></i></button>
+        </div>
+      </form>
+
+      <!-- REGISTER -->
+      <form class="auth-form" id="registerForm">
+        <div class="input-group">
+          <i class="fa-solid fa-user"></i>
+          <input type="text" placeholder="To'liq ismingiz" required />
+        </div>
+        <div class="input-group">
+          <i class="fa-solid fa-envelope"></i>
+          <input type="email" placeholder="Email manzilingiz" required />
+        </div>
+        <div class="input-group">
+          <i class="fa-solid fa-phone"></i>
+          <input type="tel" placeholder="+998 90 123 45 67" required />
+        </div>
+        <div class="input-group">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" placeholder="Parol yarating" required />
+        </div>
+        <button type="submit" class="btn-primary">Ro'yxatdan o'tish</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== APP CONTAINER ========== -->
+  <div class="app" id="app">
+
+    <!-- ============ TOP BAR ============ -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
+        <div class="location">
+          <span class="loc-label"><i class="fa-solid fa-location-dot"></i> Yetkazib berish</span>
+          <span class="loc-value">Toshkent, Chilonzor</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn notif-btn" id="notifBtn">
+          <i class="fa-regular fa-bell"></i>
+          <span class="badge">3</span>
+        </button>
+        <div class="avatar-sm" id="topAvatar">T</div>
+      </div>
+    </header>
+
+    <!-- ============ NOTIFICATIONS PANEL ============ -->
+    <aside class="notif-panel" id="notifPanel">
+      <div class="notif-head">
+        <h3>Bildirishnomalar</h3>
+        <div style="display:flex;gap:8px">
+          <button class="icon-btn" id="clearNotif" title="Tozalash"><i class="fa-solid fa-trash"></i></button>
+          <button class="icon-btn" id="closeNotif"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+      <div class="notif-list" id="notifList"></div>
+    </aside>
+
+    <!-- ============ PAGE: HOME ============ -->
+    <section class="page active" id="page-home">
+      <!-- Greeting + Search -->
+      <div class="home-head">
+        <h1>Salom, <span class="accent">Tohirjon</span> 👋</h1>
+        <p class="sub">Bugun nima yegingiz keladi?</p>
+
+        <div class="search-bar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Burger, pizza, lavash qidirish..." id="searchInput" />
+          <button class="filter-btn"><i class="fa-solid fa-sliders"></i></button>
+        </div>
+      </div>
+
+      <!-- Promo banner -->
+      <div class="promo-slider">
+        <div class="promo-card">
+          <div class="promo-text">
+            <span class="promo-tag">YANGI AKSIYA</span>
+            <h2>Burger + Free<br/>Coca-Cola</h2>
+            <p>Faqat bugun -30% chegirma bilan!</p>
+            <button class="btn-primary sm">Buyurtma berish</button>
+          </div>
+          <div class="promo-img">🍔</div>
+        </div>
+      </div>
+
+      <!-- Categories -->
+      <div class="section-head">
+        <h3>Kategoriyalar</h3>
+        <a href="#" class="see-all">Hammasi</a>
+      </div>
+      <div class="categories" id="categories">
+        <div class="cat-chip active" data-cat="all"><span>🍽️</span><p>Hammasi</p></div>
+        <div class="cat-chip" data-cat="burger"><span>🍔</span><p>Burger</p></div>
+        <div class="cat-chip" data-cat="pizza"><span>🍕</span><p>Pizza</p></div>
+        <div class="cat-chip" data-cat="lavash"><span>🌯</span><p>Lavash</p></div>
+        <div class="cat-chip" data-cat="hotdog"><span>🌭</span><p>Hot-Dog</p></div>
+        <div class="cat-chip" data-cat="fries"><span>🍟</span><p>Fri</p></div>
+        <div class="cat-chip" data-cat="drink"><span>🥤</span><p>Ichimlik</p></div>
+        <div class="cat-chip" data-cat="dessert"><span>🍩</span><p>Desert</p></div>
+      </div>
+
+      <!-- Popular foods -->
+      <div class="section-head">
+        <h3>Mashhur taomlar</h3>
+        <a href="#" class="see-all">Hammasi</a>
+      </div>
+      <div class="food-grid" id="foodGrid"><!-- JS render --></div>
+    </section>
+
+    <!-- ============ PAGE: CART ============ -->
+    <section class="page" id="page-cart">
+      <div class="page-head">
+        <h2>Savatim</h2>
+        <p class="sub">Tanlangan taomlaringiz</p>
+      </div>
+      <div class="cart-list" id="cartList"></div>
+      <div class="cart-summary" id="cartSummary">
+        <div class="row"><span>Mahsulotlar</span><b id="sumItems">0 so'm</b></div>
+        <div class="row"><span>Yetkazib berish</span><b>15 000 so'm</b></div>
+        <div class="row total"><span>Jami</span><b id="sumTotal">0 so'm</b></div>
+        <button class="btn-primary block" id="checkoutBtn">Buyurtma berish</button>
+      </div>
+    </section>
+
+    <!-- ============ PAGE: ORDERS ============ -->
+    <section class="page" id="page-orders">
+      <div class="page-head">
+        <h2>Buyurtmalarim</h2>
+        <p class="sub">Joriy va yakunlangan</p>
+      </div>
+      <div class="order-tabs">
+        <button class="order-tab active" data-otab="active">Faol</button>
+        <button class="order-tab" data-otab="done">Yakunlangan</button>
+        <button class="order-tab" data-otab="cancel">Bekor qilingan</button>
+      </div>
+      <div class="order-list" id="orderList"></div>
+    </section>
+
+    <!-- ============ PAGE: PROFILE ============ -->
+    <section class="page" id="page-profile">
+      <div class="profile-head">
+        <div class="avatar-lg" id="profileAvatar">T</div>
+        <h2 id="profileName">User</h2>
+        <p id="profileEmail">user@mail.com</p>
+        <button class="btn-outline sm" id="editProfileBtn">Profilni tahrirlash</button>
+      </div>
+
+      <div class="profile-stats">
+        <div class="stat"><b id="statOrders">0</b><span>Buyurtma</span></div>
+        <div class="stat"><b id="statFav">0</b><span>Sevimli</span></div>
+        <div class="stat"><b id="statBonus">0</b><span>Bonus</span></div>
+      </div>
+
+      <div class="menu-list">
+        <div class="menu-item" id="favoritesBtn">
+          <div class="mi-icon red"><i class="fa-solid fa-heart"></i></div>
+          <div class="mi-text">
+            <h4>Sevimlilar</h4>
+            <p>Yoqtirgan taomlaringiz</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="menu-item" id="addressBtn">
+          <div class="mi-icon green"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="mi-text">
+            <h4>Manzillarim</h4>
+            <p>Yetkazib berish manzillari</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="menu-item" id="paymentBtn">
+          <div class="mi-icon orange"><i class="fa-solid fa-credit-card"></i></div>
+          <div class="mi-text">
+            <h4>To'lov usullari</h4>
+            <p>Karta va naqd to'lovlar</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="menu-item theme-row">
+          <div class="mi-icon dark"><i class="fa-solid fa-moon"></i></div>
+          <div class="mi-text">
+            <h4>Tungi rejim</h4>
+            <p>Dark / Light mode</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="themeToggle">
+            <span class="slider-sw"></span>
+          </label>
+        </div>
+
+        <div class="menu-item" id="chatBtn">
+          <div class="mi-icon green"><i class="fa-solid fa-comment-dots"></i></div>
+          <div class="mi-text">
+            <h4>Admin bilan chat</h4>
+            <p>Savol va murojaat</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="menu-item" id="helpBtn">
+          <div class="mi-icon green"><i class="fa-solid fa-circle-question"></i></div>
+          <div class="mi-text">
+            <h4>Yordam</h4>
+            <p>Tez-tez so'raladigan savollar</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="menu-item" id="privacyBtn">
+          <div class="mi-icon orange"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="mi-text">
+            <h4>Maxfiylik</h4>
+            <p>Hisob xavfsizligi</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="menu-item logout" id="logoutBtn">
+          <div class="mi-icon red"><i class="fa-solid fa-arrow-right-from-bracket"></i></div>
+          <div class="mi-text">
+            <h4>Chiqish</h4>
+            <p>Hisobdan chiqish</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGE: FAVORITES ============ -->
+    <section class="page" id="page-favorites">
+      <div class="page-head" style="display:flex;align-items:center;gap:10px">
+        <button class="icon-btn" data-back="profile"><i class="fa-solid fa-arrow-left"></i></button>
+        <div><h2>Sevimlilar</h2><p class="sub">Yoqtirgan taomlaringiz</p></div>
+      </div>
+      <div class="food-grid" id="favGrid"></div>
+    </section>
+
+    <!-- ============ FOOD DETAIL MODAL ============ -->
+    <div class="detail-modal" id="detailModal">
+      <div class="detail-content">
+        <button class="close-btn" id="closeDetail"><i class="fa-solid fa-xmark"></i></button>
+        <div class="detail-img" id="dImg">🍔</div>
+        <div class="detail-body">
+          <h2 id="dName">Burger</h2>
+          <div class="detail-meta">
+            <span><i class="fa-solid fa-star"></i> 4.8</span>
+            <span><i class="fa-solid fa-clock"></i> 15 daq</span>
+            <span><i class="fa-solid fa-fire"></i> 320 kkal</span>
+          </div>
+          <p class="detail-desc" id="dDesc">Tavsif...</p>
+          <div class="qty-row">
+            <span>Miqdor</span>
+            <div class="qty">
+              <button id="qMinus">-</button>
+              <span id="qVal">1</span>
+              <button id="qPlus">+</button>
+            </div>
+          </div>
+          <div class="detail-foot">
+            <div>
+              <span class="small">Narxi</span>
+              <h3 id="dPrice">35 000 so'm</h3>
+            </div>
+            <button class="btn-primary" id="addToCart"><i class="fa-solid fa-cart-plus"></i> Savatga</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ ADDRESS MODAL ============ -->
+    <div class="mini-modal" id="addressModal">
+      <div class="mini-content">
+        <div class="mini-head">
+          <h3>Manzillarim</h3>
+          <button class="icon-btn" data-close="addressModal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="addressList"></div>
+        <button class="btn-outline block" id="newAddressBtn"><i class="fa-solid fa-plus"></i> Yangi manzil qo'shish</button>
+      </div>
+    </div>
+
+    <!-- ============ ADDRESS FORM MODAL ============ -->
+    <div class="mini-modal" id="addressFormModal">
+      <div class="mini-content">
+        <div class="mini-head">
+          <h3 id="addrFormTitle">Yangi manzil</h3>
+          <button class="icon-btn" data-close="addressFormModal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form id="addressForm" class="ufm">
+          <input type="hidden" id="addrId">
+          <label>Nomi (Uy, Ish, ...)
+            <input type="text" id="addrLabel" placeholder="Uy" required>
+          </label>
+          <label>To'liq manzil
+            <input type="text" id="addrText" placeholder="Toshkent, Chilonzor 11, 25-uy" required>
+          </label>
+          <label>Mo'ljal (ixtiyoriy)
+            <input type="text" id="addrNote" placeholder="2-qavat, ko'k eshik">
+          </label>
+          <button type="submit" class="btn-primary block">Saqlash</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ============ PAYMENT MODAL ============ -->
+    <div class="mini-modal" id="paymentModal">
+      <div class="mini-content">
+        <div class="mini-head">
+          <h3>To'lov usullari</h3>
+          <button class="icon-btn" data-close="paymentModal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="paymentList"></div>
+        <button class="btn-outline block" id="newPaymentBtn"><i class="fa-solid fa-plus"></i> Karta qo'shish</button>
+      </div>
+    </div>
+
+    <!-- ============ PAYMENT FORM ============ -->
+    <div class="mini-modal" id="paymentFormModal">
+      <div class="mini-content">
+        <div class="mini-head">
+          <h3>Yangi karta</h3>
+          <button class="icon-btn" data-close="paymentFormModal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form id="paymentForm" class="ufm">
+          <input type="hidden" id="payId">
+          <label>Tur
+            <select id="payType">
+              <option value="uzcard">Uzcard</option>
+              <option value="humo">Humo</option>
+              <option value="visa">Visa</option>
+              <option value="mastercard">Mastercard</option>
+            </select>
+          </label>
+          <label>Karta raqami
+            <input type="text" id="payNumber" placeholder="8600 1234 5678 9012" maxlength="19" required>
+          </label>
+          <label>Egasining ismi
+            <input type="text" id="payHolder" placeholder="ISM FAMILIYA" required>
+          </label>
+          <label>Amal qilish muddati
+            <input type="text" id="payExpiry" placeholder="MM/YY" maxlength="5" required>
+          </label>
+          <button type="submit" class="btn-primary block">Saqlash</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ============ PROFILE EDIT MODAL ============ -->
+    <div class="mini-modal" id="profileEditModal">
+      <div class="mini-content">
+        <div class="mini-head">
+          <h3>Profilni tahrirlash</h3>
+          <button class="icon-btn" data-close="profileEditModal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form id="profileEditForm" class="ufm">
+          <label>To'liq ism<input type="text" id="peName" required></label>
+          <label>Email<input type="email" id="peEmail" required></label>
+          <label>Telefon<input type="tel" id="pePhone" placeholder="+998 90 123 45 67"></label>
+          <button type="submit" class="btn-primary block">Saqlash</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ============ PRIVACY/PASSWORD MODAL ============ -->
+    <div class="mini-modal" id="privacyModal">
+      <div class="mini-content">
+        <div class="mini-head">
+          <h3>Maxfiylik va xavfsizlik</h3>
+          <button class="icon-btn" data-close="privacyModal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form id="passForm" class="ufm">
+          <label>Joriy parol<input type="password" id="curPass" required></label>
+          <label>Yangi parol<input type="password" id="newPass" required></label>
+          <label>Tasdiqlash<input type="password" id="confPass" required></label>
+          <button type="submit" class="btn-primary block">Parolni o'zgartirish</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ============ CHAT MODAL ============ -->
+    <div class="mini-modal" id="chatModal">
+      <div class="mini-content chat-modal-content">
+        <div class="mini-head">
+          <h3><i class="fa-solid fa-headset"></i> Admin qo'llab-quvvatlash</h3>
+          <button class="icon-btn" data-close="chatModal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="uchat-body" id="uchatBody"></div>
+        <form class="uchat-input" id="uchatForm">
+          <input type="text" id="uchatInput" placeholder="Habar yozing..." autocomplete="off" required>
+          <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ============ FILTER MODAL ============ -->
+    <div class="mini-modal" id="filterModal">
+      <div class="mini-content">
+        <div class="mini-head">
+          <h3>Filter va saralash</h3>
+          <button class="icon-btn" data-close="filterModal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <h4 class="filt-h">Saralash</h4>
+        <div class="filt-row" id="sortRow">
+          <button class="filt-chip active" data-sort="default">Standart</button>
+          <button class="filt-chip" data-sort="priceAsc">Narx ↑</button>
+          <button class="filt-chip" data-sort="priceDesc">Narx ↓</button>
+          <button class="filt-chip" data-sort="rating">Reyting</button>
+          <button class="filt-chip" data-sort="fast">Tezroq</button>
+        </div>
+        <h4 class="filt-h">Narx oralig'i</h4>
+        <div class="price-range">
+          <input type="range" id="priceRange" min="10000" max="100000" step="5000" value="100000">
+          <div class="pr-info"><span>0</span> — <span id="prMax">100 000</span> so'm</div>
+        </div>
+        <button class="btn-primary block" id="applyFilter">Qo'llash</button>
+        <button class="btn-outline block" id="resetFilter">Tiklash</button>
+      </div>
+    </div>
+
+    <!-- ============ HELP MODAL ============ -->
+    <div class="mini-modal" id="helpModal">
+      <div class="mini-content">
+        <div class="mini-head">
+          <h3>Yordam</h3>
+          <button class="icon-btn" data-close="helpModal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="faq">
+          <details open><summary>Buyurtma qanday beriladi?</summary><p>Taomni tanlab savatga qo'shing, so'ng "Buyurtma berish" tugmasini bosing.</p></details>
+          <details><summary>Yetkazib berish vaqti qancha?</summary><p>O'rtacha 30-45 daqiqa, manzilga qarab o'zgaradi.</p></details>
+          <details><summary>To'lov turlari?</summary><p>Naqd, Uzcard, Humo, Click va Payme orqali to'lash mumkin.</p></details>
+          <details><summary>Buyurtmani bekor qilish</summary><p>Tayyorlanmaguncha buyurtmani bekor qilishingiz mumkin.</p></details>
+        </div>
+        <div class="contact-row">
+          <a href="tel:+998900000000" class="contact-btn"><i class="fa-solid fa-phone"></i> Qo'ng'iroq</a>
+          <a href="#" class="contact-btn green" id="openChatFromHelp"><i class="fa-solid fa-comment-dots"></i> Chat</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ TOAST ============ -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ============ BOTTOM NAV ============ -->
+    <nav class="bottom-nav">
+      <button class="nav-btn active" data-page="home">
+        <i class="fa-solid fa-house"></i><span>Asosiy</span>
+      </button>
+      <button class="nav-btn" data-page="cart">
+        <i class="fa-solid fa-bag-shopping"></i><span>Savat</span>
+        <span class="nav-badge" id="cartBadge" style="display:none">0</span>
+      </button>
+      <button class="nav-btn" data-page="orders">
+        <i class="fa-solid fa-receipt"></i><span>Buyurtma</span>
+      </button>
+      <button class="nav-btn" data-page="profile">
+        <i class="fa-solid fa-user"></i><span>Profil</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
