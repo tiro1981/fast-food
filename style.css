@@ -374,7 +374,18 @@ input,select,textarea{
 .icon-btn:hover{background:var(--text);color:#fff;border-color:var(--text);box-shadow:var(--sh-2)}
 .icon-btn:active{transform:scale(.94)}
 
-.location{display:flex;flex-direction:column;min-width:0}
+/* ════════════════════════════════════════════════════════════════
+   TOPBAR LOCATION (button)
+════════════════════════════════════════════════════════════════ */
+.location{
+  display:flex;flex-direction:column;min-width:0;align-items:flex-start;
+  background:transparent;border:none;padding:6px 12px 6px 8px;
+  border-radius:12px;cursor:pointer;
+  transition:background var(--dur),transform .15s var(--ease);
+  max-width:260px;
+}
+.location:hover{background:var(--soft)}
+.location:active{transform:scale(.97)}
 .loc-label{
   font-size:11px;color:var(--text-sub);font-weight:500;
   display:flex;align-items:center;gap:4px;
@@ -589,9 +600,9 @@ input,select,textarea{
 /* dish illustration container — colored gradient + emoji + decorative dots */
 .food-emoji{
   position:relative;
-  height:130px;
+  height:180px;
   display:flex;align-items:center;justify-content:center;
-  font-size:62px;
+  font-size:64px;
   background:
     radial-gradient(circle at 30% 30%,rgba(255,255,255,.45),transparent 50%),
     radial-gradient(circle at 70% 80%,rgba(0,0,0,.05),transparent 60%),
@@ -632,12 +643,12 @@ input,select,textarea{
 .food-card .food-meta,
 .food-card .food-foot{padding-left:14px;padding-right:14px}
 .food-name{
-  font-size:14.5px;font-weight:600;color:var(--text);
-  margin-top:14px;letter-spacing:-.25px;line-height:1.25;
+  font-size:13px;font-weight:600;color:var(--text);
+  margin-top:12px;letter-spacing:-.2px;line-height:1.25;
 }
 .food-meta{
-  display:flex;align-items:center;gap:6px;
-  font-size:11.5px;color:var(--text-sub);margin-top:6px;
+  display:flex;align-items:center;gap:5px;
+  font-size:10.5px;color:var(--text-sub);margin-top:5px;
   font-weight:500;
 }
 .food-meta i.fa-star{color:var(--yellow)}
@@ -646,14 +657,14 @@ input,select,textarea{
 
 .food-foot{
   display:flex;align-items:center;justify-content:space-between;
-  margin-top:10px;padding-bottom:14px;
+  margin-top:8px;padding-bottom:12px;
 }
 .food-price{
-  font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.3px;
+  font-size:13.5px;font-weight:700;color:var(--text);letter-spacing:-.2px;
 }
 .add-btn{
-  width:36px;height:36px;border-radius:12px;
-  background:var(--text);color:#fff;font-size:14px;
+  width:32px;height:32px;border-radius:10px;
+  background:var(--text);color:#fff;font-size:13px;
   display:flex;align-items:center;justify-content:center;
   transition:transform .2s var(--spring),background var(--dur);
 }
