@@ -12,6 +12,35 @@
 </head>
 <body>
 
+  <!-- ========== DESKTOP SIDE PANELS (only show >= 900px) ========== -->
+  <div class="desktop-brand">
+    <div class="desktop-brand-logo">Tasty<b>Bite</b>.</div>
+    <p>Sevimli taomlaringizni 30 daqiqada eshigingizgacha yetkazib beramiz — bugun, hozirniqi narxlarda.</p>
+    <div class="desktop-brand-chips">
+      <span class="desktop-brand-chip">🚚 30 daq</span>
+      <span class="desktop-brand-chip">⭐ 4.9/5</span>
+      <span class="desktop-brand-chip">🔥 50+ taom</span>
+    </div>
+  </div>
+
+  <div class="desktop-side-r">
+    <div class="ds-card">
+      <div class="ds-card-ico orange"><i class="fa-solid fa-bolt"></i></div>
+      <h4>Tezkor yetkazib berish</h4>
+      <p>Toshkent bo'ylab 30 daqiqada kuryer eshigingizda.</p>
+    </div>
+    <div class="ds-card">
+      <div class="ds-card-ico green"><i class="fa-solid fa-leaf"></i></div>
+      <h4>Yangi mahsulotlar</h4>
+      <p>Faqat ishonchli restoranlar va yangi mahsulotlar bilan ishlaymiz.</p>
+    </div>
+    <div class="ds-card">
+      <div class="ds-card-ico blue"><i class="fa-solid fa-percent"></i></div>
+      <h4>Har kuni aksiyalar</h4>
+      <p>Kuniga 5+ taom uchun chegirma va maxsus to'plamlar.</p>
+    </div>
+  </div>
+
   <!-- ========== AUTH MODAL (Login / Register) ========== -->
   <div class="auth-overlay" id="authOverlay">
     <div class="auth-card">
@@ -27,6 +56,7 @@
 
       <!-- LOGIN -->
       <form class="auth-form active" id="loginForm">
+        <p class="auth-welcome">Tasty Bite hisobiga xush kelibsiz</p>
         <div class="input-group">
           <i class="fa-solid fa-envelope"></i>
           <input type="email" placeholder="Email manzilingiz" required />
@@ -110,8 +140,8 @@
 
         <div class="search-bar">
           <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder="Burger, pizza, lavash qidirish..." id="searchInput" />
-          <button class="filter-btn"><i class="fa-solid fa-sliders"></i></button>
+          <input type="text" placeholder="Burger, pizza, lavash qidirish..." id="searchInput" autocomplete="off" />
+          <button class="filter-btn" aria-label="Filter"><i class="fa-solid fa-sliders"></i></button>
         </div>
       </div>
 
@@ -119,7 +149,7 @@
       <div class="promo-slider">
         <div class="promo-card">
           <div class="promo-text">
-            <span class="promo-tag">YANGI AKSIYA</span>
+            <span class="promo-tag">🔥 YANGI AKSIYA</span>
             <h2>Burger + Free<br/>Coca-Cola</h2>
             <p>Faqat bugun -30% chegirma bilan!</p>
             <button class="btn-primary sm">Buyurtma berish</button>
@@ -507,5 +537,18 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+    // Topbar scroll shadow
+    (function(){
+      const tb = document.querySelector('.topbar');
+      if(!tb) return;
+      const onScroll = ()=>{
+        if(window.scrollY > 8) tb.classList.add('scrolled');
+        else tb.classList.remove('scrolled');
+      };
+      window.addEventListener('scroll', onScroll, {passive:true});
+      onScroll();
+    })();
+  </script>
 </body>
 </html>
