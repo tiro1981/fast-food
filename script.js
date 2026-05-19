@@ -113,16 +113,26 @@ function initUserUI() {
 
 function updateProfile() {
   if (!currentUser) return;
-  const myOrders = DB.get('tb_orders', []).filter(o => o.userId === currentUser.id);
   $('profileName').textContent = currentUser.name;
   $('profileEmail').textContent = currentUser.email;
   const initial = currentUser.name[0].toUpperCase();
   $('profileAvatar').textContent = initial;
   $('topAvatar').textContent = initial;
-  $('statOrders').textContent = myOrders.length;
-  $('statFav').textContent = getFav().length;
-  $('statBonus').textContent = Math.floor(myOrders.filter(o => o.status === 'completed').length * 1.5);
   document.querySelector('.home-head h1 .accent').textContent = currentUser.name;
+  updateLocationLabel();
+}
+
+function updateLocationLabel(){
+  const el = document.getElementById('locValue'); if(!el) return;
+  const addrs = getAddrs();
+  const def = addrs.find(a=>a.isDefault) || addrs[0];
+  if(def){
+    // Truncate to fit in topbar
+    const text = def.address.length > 28 ? def.address.slice(0,28)+'…' : def.address;
+    el.textContent = text;
+  } else {
+    el.textContent = 'Manzil qo\'shing';
+  }
 }
 
 // ========== BOTTOM NAV ==========
@@ -492,9 +502,11 @@ document.querySelectorAll('.mini-modal, .detail-modal').forEach(m => {
 
 // ========== ADDRESS CRUD ==========
 $('addressBtn').addEventListener('click', () => { renderAddresses(); openModal('addressModal'); });
+document.getElementById('locationBtn')?.addEventListener('click', () => { renderAddresses(); openModal('addressModal'); });
 $('newAddressBtn').addEventListener('click', () => openAddressForm(null));
 
 function renderAddresses() {
+  updateLocationLabel();
   const list = $('addressList');
   const addrs = getAddrs();
   if (addrs.length === 0) {
@@ -723,14 +735,14 @@ $('uchatForm').addEventListener('submit', (e) => {
 
 // ========== HELP / PROMO / FILTER ==========
 $('helpBtn').addEventListener('click', () => openModal('helpModal'));
-document.querySelector('.promo-card .btn-primary').addEventListener('click', () => navigateTo('home'));
+document.querySelector('.promo-card .btn-primary')?.addEventListener('click', () => navigateTo('home'));
 document.querySelectorAll('.see-all').forEach(a => a.addEventListener('click', (e) => {
   e.preventDefault();
   document.querySelector('[data-cat="all"]').click();
   $('foodGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }));
 
-document.querySelector('.filter-btn').addEventListener('click', () => openModal('filterModal'));
+document.querySelector('.filter-btn')?.addEventListener('click', () => openModal('filterModal'));
 document.querySelectorAll('#sortRow .filt-chip').forEach(c => c.addEventListener('click', () => {
   document.querySelectorAll('#sortRow .filt-chip').forEach(x => x.classList.remove('active'));
   c.classList.add('active');
