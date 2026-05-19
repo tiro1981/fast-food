@@ -238,7 +238,7 @@ function renderFoods() {
 
   const favs = getFav();
   grid.innerHTML = list.map(f => `
-    <div class="food-card" data-id="${f.id}">
+    <div class="food-card" data-id="${f.id}" data-cat="${f.cat}">
       <button class="fav-btn ${favs.includes(f.id) ? 'on' : ''}" data-fav="${f.id}">
         <i class="${favs.includes(f.id) ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
       </button>
@@ -291,7 +291,7 @@ function renderFavorites() {
     return;
   }
   grid.innerHTML = foods.map(f => `
-    <div class="food-card" data-id="${f.id}">
+    <div class="food-card" data-id="${f.id}" data-cat="${f.cat}">
       <button class="fav-btn on" data-fav="${f.id}"><i class="fa-solid fa-heart"></i></button>
       <div class="food-emoji">${foodImageHTML(f)}</div>
       <div class="food-name">${f.name}</div>
@@ -323,6 +323,7 @@ function openDetail(id) {
   currentFood = f;
   qty = 1;
   $('dImg').innerHTML = foodImageHTML(f);
+  $('dImg').setAttribute('data-cat', f.cat);
   $('dName').textContent = f.name;
   $('dDesc').textContent = f.desc;
   $('dPrice').textContent = formatPrice(f.price);
@@ -366,7 +367,7 @@ function renderCart() {
     const f = foods.find(x => x.id === c.id);
     if (!f) return '';
     return `
-      <div class="cart-item">
+      <div class="cart-item" data-cat="${f.cat}">
         <div class="cart-emoji">${foodImageHTML(f)}</div>
         <div class="cart-info"><h4>${f.name}</h4><p>${formatPrice(f.price * c.qty)}</p></div>
         <div class="cart-qty">
